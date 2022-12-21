@@ -12,3 +12,7 @@ app.use(express.urlencoded({ extended: true }))
 app.get('/', (req,res) => {
     res.render('index')
 })
+
+app.get('/bookLog', (req,res) => {
+    res.render('log')
+})

@@ -1,7 +1,92 @@
 <!DOCTYPE html>
 
 <html lang="en">
-  <%= include('/partials/head.ejs') %>
+  <%- include('./partials/head.ejs') %>
 
-  <body></body>
+  <body>
+    <main class="book-log-wrap">
+      <h1>Book Log</h1>
+      <form action="#">
+        <section class="double-line">
+          <div class="label-input-pair">
+            <label for="title">Title:</label>
+            <input type="text" name="title" />
+          </div>
+
+          <div class="label-input-pair">
+            <label for="author">Author:</label>
+            <input type="text" name="author" />
+          </div>
+        </section>
+        <section class="double-line">
+          <div class="label-input-pair">
+            <label for="genre">Genre:</label>
+            <input type="text" name="genre" />
+          </div>
+
+          <div class="label-input-pair">
+            <label for="total-pages">Number of Pages:</label>
+            <input type="number" name="total-pages" />
+          </div>
+        </section>
+
+        <section class="single-line">
+          <div class="label-input-pair">
+            <label for="summary">Summary:</label>
+            <textarea name="summary" rows="10"></textarea>
+          </div>
+        </section>
+
+        <section class="double-line">
+          <div class="label-input-pair">
+            <label for="first-main-character">Main Character 1:</label>
+            <input type="text" name="first-main-character" />
+          </div>
+          <div class="label-input-pair">
+            <label for="first-character-description">
+              Character Description:
+            </label>
+            <textarea name="first-character-description" rows="5"></textarea>
+          </div>
+        </section>
+        <section class="double-line">
+          <div class="label-input-pair">
+            <label for="second-main-character">Main Character 2:</label>
+            <input type="text" name="second-main-character" />
+          </div>
+          <div class="label-input-pair">
+            <label for="second-character-description">
+              Character Description:
+            </label>
+            <textarea name="second-character-description" rows="5"></textarea>
+          </div>
+        </section>
+
+        <section class="double-line">
+          <div class="radio-group">
+            <h4>Was there a plot twist?</h4>
+
+            <div class="radio-options">
+              <label for="yes">Yes</label>
+              <input id="yes" type="radio" name="plot-twist" value="yes" />
+
+              <label for="no">No</label>
+              <input id="no" type="radio" name="plot-twist" value="no" />
+            </div>
+          </div>
+          <div class="radio-group">
+            <h4>Was there a plot twist?</h4>
+
+            <div class="radio-options">
+              <label for="yes">Yes</label>
+              <input id="yes" type="radio" name="plot-twist" value="yes" />
+
+              <label for="no">No</label>
+              <input id="no" type="radio" name="plot-twist" value="no" />
+            </div>
+          </div>
+        </section>
+      </form>
+    </main>
+  </body>
 </html>
