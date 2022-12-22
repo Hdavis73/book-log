@@ -13,6 +13,11 @@ app.get('/', (req,res) => {
     res.render('index')
 })
 
-app.get('/bookLog', (req,res) => {
-    res.render('log')
+app.get('/chooseLog', (req,res) => {
+    res.render('choose-log')
 })
+
+app.get('/bookLog', (req,res) => {
+    res.render('fullLog')
+})
+
