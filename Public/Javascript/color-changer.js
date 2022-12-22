@@ -1,10 +1,13 @@
 const colorPicker = document.querySelector('.color-picker')
 let clickCount = 1
 
+
 colorPicker.addEventListener('click', changeColor)
 
 function changeColor() {
     const backgroundGradient = document.querySelector(':root').style
+
+
 
     switch(clickCount){
         case 0: 
@@ -44,5 +47,14 @@ function changeColor() {
             clickCount = 0
 
     }
+
+    let currentBackgroundColor = backgroundGradient.getPropertyValue('--main-color')
+    console.log(currentBackgroundColor)
+
+    localStorage.setItem('currentColorScheme',currentBackgroundColor)
+
 }
+
+document.querySelector(':root').style.setProperty('--main-color', localStorage.getItem('currentColorScheme'))
+
 
