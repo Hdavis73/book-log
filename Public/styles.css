@@ -176,8 +176,17 @@ form textarea {
 .rating p{
     font-size: 2rem;
     letter-spacing: -7px;
+}
+
+.rating .star {
     color: var(--main-color);
     opacity: .2;
+    cursor: pointer;
+    user-select: none;
+}
+
+.star.active {
+    opacity: 1;
 }
 
 
