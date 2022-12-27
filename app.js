@@ -25,3 +25,7 @@ app.get('/chapterLog', (req,res) => {
     res.render('chapterLog')
 })
 
+app.get('/findBook', (req,res) => {
+    res.render('findBook')
+})
+
