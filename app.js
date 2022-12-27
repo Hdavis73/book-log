@@ -21,3 +21,7 @@ app.get('/bookLog', (req,res) => {
     res.render('fullLog')
 })
 
+app.get('/chapterLog', (req,res) => {
+    res.render('chapterLog')
+})
+

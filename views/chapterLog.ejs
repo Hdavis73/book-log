@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <%- include('./partials/head.ejs') %>
+
+  <body>
+
+    <button class="color-picker">Change Color</button>
+    <button class="home-btn"> <a href="/">Home</a> </button>
+
+    <main class="book-log-wrap">
+      <h1>Chapter Log</h1>
+      <form action="#">
+        <!-- <section class="double-line">
+          <div class="label-input-pair">
+            <label for="title">Chapter Title:</label>
+            <input type="text" name="title" />
+          </div>
+
+          <div class="label-input-pair">
+            <label for="author">Author:</label>
+            <input type="text" name="author" />
+          </div>
+        </section> -->
+        <section class="double-line">
+          <div class="label-input-pair">
+            <label for="chapter-title">Chapter Title:</label>
+            <input type="text" name="chapter-title" />
+          </div>
+
+          <div class="label-input-pair">
+            <label for="chapter-number">Chapter Number:</label>
+            <input type="number" name="chapter-number" />
+          </div>
+        </section>
+
+        <section class="single-line">
+          <div class="label-input-pair">
+            <label for="summary">Summary:</label>
+            <textarea name="summary" rows="6"></textarea>
+          </div>
+        </section>
+
+        <section class="double-line">
+          <div class="label-input-pair">
+            <label for="first-main-character">Main Character 1:</label>
+            <input type="text" name="first-main-character" />
+          </div>
+          <div class="label-input-pair">
+            <label for="first-character-description">
+              Character Description:
+            </label>
+            <textarea name="first-character-description" rows="5"></textarea>
+          </div>
+        </section>
+        <section class="double-line">
+          <div class="label-input-pair">
+            <label for="second-main-character">Main Character 2:</label>
+            <input type="text" name="second-main-character" />
+          </div>
+          <div class="label-input-pair">
+            <label for="second-character-description">
+              Character Description:
+            </label>
+            <textarea name="second-character-description" rows="5"></textarea>
+          </div>
+        </section>
+
+        <section class="double-line">
+          <div class="radio-group">
+            <h4>Was there a plot twist?</h4>
+
+            <div class="radio-options">
+              <label for="yes">Yes</label>
+              <input id="yes" type="radio" name="plot-twist" value="yes" />
+
+              <label for="no">No</label>
+              <input id="no" type="radio" name="plot-twist" value="no" />
+            </div>
+          </div>
+
+          <div class="radio-group">
+            <h4>Was the twist expected?</h4>
+
+            <div class="radio-options">
+              <label for="yes">Yes</label>
+              <input id="yes" type="radio" name="plot-twist" value="yes" />
+
+              <label for="no">No</label>
+              <input id="no" type="radio" name="plot-twist" value="no" />
+            </div>
+          </div>
+        </section>
+
+        <section class="single-line">
+
+          <div class="label-input-pair">
+            <label for="plot-twist-description">Describe the Plot Twist:</label>
+            <textarea name="plot-twist-description" rows="6"></textarea>
+          </div>
+
+        </section>
+
+        <section class="single-line">
+
+          <div class="label-input-pair">
+            <label for="important-event">Describe what you think was the most important event in the story and why it was significant to you:</label>
+            <textarea name="important-event" rows="6"></textarea>
+          </div>
+
+        </section>
+
+        <section class="single-line">
+
+          <div class="label-input-pair">
+            <label for="story-relation">Did you relate to this story at all, and if so describe how</label>
+            <textarea name="story-relation" rows="6"></textarea>
+          </div>
+
+        </section>
+
+        <section class="single-line">
+
+          <div class="label-input-pair">
+            <label for="learn-anything">Did you learning anything new while reading this book, if so describe it:</label>
+            <textarea name="learn-anything" rows="6"></textarea>
+          </div>
+
+        </section>
+
+        <section class="single-line">
+
+          <div class="label-input-pair">
+            <label for="end-feelings">Describe how you felt after finishing this book:</label>
+            <textarea name="end-feelings" rows="6"></textarea>
+          </div>
+
+        </section>
+
+        <section class="rating-wrap">
+          <h4>How would you rate this book?</h4>
+          <div class="rating">
+            <p> <span class="star">&#x2BC1;</span> <span class="star">&#x2BC1;</span> <span class="star">&#x2BC1;</span> <span class="star">&#x2BC1;</span> <span class="star">&#x2BC1;</span> <span class="star">&#x2BC1;</span> <span class="star">&#x2BC1;</span> <span class="star">&#x2BC1;</span> <span class="star">&#x2BC1;</span> <span class="star">&#x2BC1;</span> </p>
+          </div>
+        </section>
+
+        <button class="submit-log">Submit Log</button>
+
+      </form>
+
+    </main>
+
+    <script src="/Javascript/star-rating.js"></script>
+    <script src="/Javascript/color-changer.js"></script>
+  </body>
+</html>
