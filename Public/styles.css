@@ -33,6 +33,7 @@ a {
 }
 
 
+
 .hidden {
     display: none !important;
 }
@@ -72,7 +73,8 @@ a {
 
 /* ==========intro page========== */
 .intro-wrap,
-.choose-log-wrap {
+.choose-log-wrap,
+.search-wrap {
     background-color: white;
     padding: 50px;
     border-radius: 10px;
@@ -103,7 +105,8 @@ a {
 
 /* ============book log page============= */
 
-.book-log-wrap {
+.book-log-wrap,
+.search-wrap {
     background-color: white;
     padding: 30px;
     border-radius: 10px;
@@ -211,6 +214,41 @@ form textarea {
     font-size: 1.3rem;
     margin-top: 40px;
     font-weight: 400
+}
+
+/* ================Search Book Start ========= */
+
+.search-wrap {
+    width: 80%;
+    max-width: 700px;
+}
+
+.book-group {
+    display: flex;
+    gap: 17px;
+    /* justify-content: space-between; */
+    flex-basis: 23%;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+
+}
+
+.single-book {
+    /* width: 23%; */
+    /* border: 1px solid black; */
+    max-width: 146px;
+}
+
+.single-book img {
+    /* width: 100%; */
+    width: 144.32px;
+    height: 85%;
+    margin-bottom: 5px;
+}
+
+.single-book h3 {
+    font-weight: 500;
+    margin-bottom: 5px;
 }
 
 
