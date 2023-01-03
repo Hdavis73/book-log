@@ -223,6 +223,26 @@ form textarea {
     max-width: 700px;
 }
 
+.search-btn-group input{
+    width: 80%;
+    padding: 5px 10px;
+    /* border: 2px solid black; */
+    font-size: 1.2rem;
+}
+
+.search-btn-group button {
+    border-radius: 3px;
+    background-color: var(--main-color);
+    color: white;
+    font-weight: 500;
+}
+
+.search-btn-group button:hover {
+    background-color: transparent;
+    color: var(--main-color);
+    font-weight: 500;
+}
+
 .book-group {
     display: flex;
     gap: 17px;
@@ -243,12 +263,14 @@ form textarea {
     /* width: 100%; */
     width: 144.32px;
     height: 85%;
+    max-height: 216px;
     margin-bottom: 5px;
 }
 
 .single-book h3 {
     font-weight: 500;
     margin-bottom: 5px;
+    font-size: 1.1rem;
 }
 
 
