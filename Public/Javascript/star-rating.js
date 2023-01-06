@@ -24,11 +24,11 @@ stars.forEach((star) => {
   star.addEventListener('mouseover', () => {
     console.log('mouse is over')
 
-        star.classList.add('grow')
+    if(!star.classList.contains('active'))  star.classList.add('hover')
   })
 
   star.addEventListener('mouseleave', () => {
-    star.classList.remove('grow')
+    star.classList.remove('hover')
   })
 });
 

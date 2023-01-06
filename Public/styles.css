@@ -209,8 +209,9 @@ form textarea {
     opacity: 1;
 }
 
-.star.grow {
-    font-size: 2.2rem;
+.star.hover {
+    /* font-size: 2.2rem; */
+    opacity: .5
 }
 
 .submit-log {
@@ -231,7 +232,6 @@ form textarea {
 .search-btn-group input{
     width: 80%;
     padding: 5px 10px;
-    /* border: 2px solid black; */
     font-size: 1.2rem;
 }
 
@@ -259,9 +259,12 @@ form textarea {
 }
 
 .single-book {
-    /* width: 23%; */
-    /* border: 1px solid black; */
+    cursor: pointer;
     max-width: 146px;
+}
+
+.single-book:hover img{
+    border:2px solid #FAF9F6;
 }
 
 .single-book img {
