@@ -261,6 +261,7 @@ form textarea {
 .single-book {
     cursor: pointer;
     max-width: 146px;
+    border: none;
 }
 
 .single-book:hover img{
