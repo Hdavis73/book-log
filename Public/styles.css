@@ -106,7 +106,8 @@ a {
 /* ============book log page============= */
 
 .book-log-wrap,
-.search-wrap {
+.search-wrap,
+.book-details-wrap {
     background-color: white;
     padding: 30px;
     border-radius: 10px;
@@ -117,6 +118,7 @@ a {
     top: 60px;
     max-width: 700px;
     position: relative;
+    text-align: center;
 }
 
 .book-log-wrap h1 {
@@ -222,9 +224,10 @@ form textarea {
     font-weight: 400
 }
 
-/* ================Search Book Start ========= */
+/* ================Search Book Start========= */
 
-.search-wrap {
+.search-wrap,
+.book-details-wrap {
     width: 80%;
     max-width: 700px;
 }
@@ -282,7 +285,11 @@ form textarea {
     font-size: 1.1rem;
 }
 
+/* ===============Book Details Start================== */
 
+.book-details-wrap {
+    line-height: 1.3;
+}
 
 @media screen and (max-width: 1023px) {
     .book-log-wrap {

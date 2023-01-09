@@ -29,3 +29,7 @@ app.get('/findBook', (req,res) => {
     res.render('findBook')
 })
 
+app.get('/bookDetails', (req,res) => {
+    res.render('book-details')
+})
+
