@@ -35,8 +35,8 @@ function applyInfo(arrName){
           arrName[i].volumeInfo.title;
       }
 }
-//fetch the NYTimes Bestseller API and add the ISBN numbers of each to an array to be searched with google books api later
 
+//fetch the NYTimes Bestseller API and add the ISBN numbers of each to an array to be searched with google books api later
 async function fetchBestSellerIsbnNy(){
   const response = await fetch( "https://api.nytimes.com/svc/books/v3/lists.json?list-name=hardcover-fiction&&api-key=fdXgMoy5fKdWsnKYYNWbUpbrQ99O9xJe")
   const data = await response.json()
@@ -83,6 +83,7 @@ searchBtn.addEventListener("click", () => {
   fetchGoogleBooks(googleBooksUrl);
 });
 
+//display search results, parameters on what will be displayed based on title is because google has a variety of results that are not relevent to this apps function such as summarys, collections and ebook only editions
 async function fetchGoogleBooks(url){
     let response = await fetch(url)
     let data = await response.json()
@@ -107,34 +108,44 @@ async function fetchGoogleBooks(url){
           console.log(searchResults);
     
         applyInfo(searchResults)
+        showBookDetails()
+
+
 }
 
-//display search results, parameters on what will be displayed based on title is because google has a variety of results that are not relevent to this apps function such as summarys, collections and ebook only editions
-// function fetchGoogleBooks(url) {
-//   fetch(url)
-//     .then((res) => res.json())
-//     .then((data) => {
-//       for (let i = 0; i < data.items.length; i++) {
-//         // console.log(data.items[i].volumeInfo.title)
+function showBookDetails(){
+    for(let i = 0; i < searchResults.length; i++){
+        let books = Array.from(document.querySelectorAll(".single-book"));
 
-//         if (
-//           data.items[i].volumeInfo.imageLinks &&
-//           !data.items[i].volumeInfo.title.toLowerCase().includes("summary") &&
-//           !data.items[i].volumeInfo.title.toLowerCase().includes("ebook") &&
-//           !data.items[i].volumeInfo.title.toLowerCase().includes("collection")
-//         )
-//           searchResults.push(data.items[i]);
-//       }
+    
+        books[i].addEventListener('click', () => {
+            console.log(searchResults[i])
+            let data = searchResults[i]
+            let bookInfo = {
+                title: data.volumeInfo.title,
+                author: data.volumeInfo.authors[0],
+                rating: data.volumeInfo.averageRating,
+                cover: data.volumeInfo.imageLinks.thumbnail
+            }
 
-//       console.log(data);
+            console.log(bookInfo)
 
-//       for (let i = 0; i < searchResults.length; i++) {
-//         createGroup();
-//       }
+            fetch('/bookDetails', {
+                method: 'post',
+                body: JSON.stringify(bookInfo),
+                // headers: {
+                //     'Content-Type': 'application/json'
+                //   }
+            })
+                .then(res => res.json)
 
-//       console.log(searchResults);
+        })
+    }
+}
 
-//     applyInfo(searchResults)
-//     });
-// }
+
+//setting a fuction for when a title is clicked on
+
+
+
 
