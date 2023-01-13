@@ -35,11 +35,12 @@ app.get('/findBook', (req,res) => {
 
 app.post('/bookDetails', (req,res) => {
     console.log(req.body)
-    
-    res.redirect('/bookDetails')
+
+    res.send({'redirectTo': 'showBookDetails'})
 })
 
-app.get('/bookDetails', (req,res) => {
+app.get('/showBookDetails', (req,res) => {
+    console.log('in get request')
     res.render('book-details')    
 })
 

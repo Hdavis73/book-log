@@ -110,6 +110,7 @@ async function fetchGoogleBooks(url) {
   showBookDetails();
 }
 
+//setting a fuction for when a title is clicked on
 async function showBookDetails() {
   for (let i = 0; i < searchResults.length; i++) {
     let books = Array.from(document.querySelectorAll(".single-book"));
@@ -133,21 +134,9 @@ async function showBookDetails() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(bookInfo),
       });
-    //   const resData = await response.json();
-      // })
+        const result = await response.json();
 
-      //     fetch('/bookDetails', {
-      //         method: 'post',
-      //         headers: {'Content-Type': 'application/json'},
-      //         body: JSON.stringify(bookInfo),
-
-      //     })
-      //         .then(res => res.json)
-
-      // })
-      // }
+        if(result.redirectTo) location.assign(result.redirectTo)
     });
   }
 }
-
-//setting a fuction for when a title is clicked on
