@@ -24,47 +24,47 @@ function createGroup() {
   h3.classList.add("book-title");
 }
 
-function applyInfo(arrName){
-    let bookDivs = Array.from(document.querySelectorAll(".single-book"));
-    console.log(bookDivs);
+function applyInfo(arrName) {
+  let bookDivs = Array.from(document.querySelectorAll(".single-book"));
+  console.log(bookDivs);
 
-    for(let i = 0; i < bookDivs.length; i++) {
-        bookDivs[i].querySelector("img").src =
-        arrName[i].volumeInfo.imageLinks.thumbnail;
-        bookDivs[i].querySelector("h3").innerText =
-          arrName[i].volumeInfo.title;
-      }
+  for (let i = 0; i < bookDivs.length; i++) {
+    bookDivs[i].querySelector("img").src =
+      arrName[i].volumeInfo.imageLinks.thumbnail;
+    bookDivs[i].querySelector("h3").innerText = arrName[i].volumeInfo.title;
+  }
 }
 
 //fetch the NYTimes Bestseller API and add the ISBN numbers of each to an array to be searched with google books api later
-async function fetchBestSellerIsbnNy(){
-  const response = await fetch( "https://api.nytimes.com/svc/books/v3/lists.json?list-name=hardcover-fiction&&api-key=fdXgMoy5fKdWsnKYYNWbUpbrQ99O9xJe")
-  const data = await response.json()
+async function fetchBestSellerIsbnNy() {
+  const response = await fetch(
+    "https://api.nytimes.com/svc/books/v3/lists.json?list-name=hardcover-fiction&&api-key=fdXgMoy5fKdWsnKYYNWbUpbrQ99O9xJe"
+  );
+  const data = await response.json();
 
   for (let i = 0; i < data.results.length; i++) {
     bestSellerIsbn.push(data.results[i].isbns[0]);
   }
 
-  fetchGoogleBooksByIsbn()
-
+  fetchGoogleBooksByIsbn();
 }
 
 //fetch books by ISBN with Google Books API so more information can be displayed
 async function fetchGoogleBooksByIsbn(i) {
-    for (let i = 0; i < bestSellerIsbn.length; i++) {
-    const response = await fetch(searchByIsbn + bestSellerIsbn[i].isbn10 + "&maxResults=20")
-    const data = await response.json()
-        googleIsbnResults.push(data.items[0]);
-        createGroup();
-        console.log('done')
-    }
-    
-    applyInfo(googleIsbnResults)
+  for (let i = 0; i < bestSellerIsbn.length; i++) {
+    const response = await fetch(
+      searchByIsbn + bestSellerIsbn[i].isbn10 + "&maxResults=20"
+    );
+    const data = await response.json();
+    googleIsbnResults.push(data.items[0]);
+    createGroup();
+    console.log("done");
+  }
+
+  applyInfo(googleIsbnResults);
 }
 
-
 fetchBestSellerIsbnNy();
-
 
 //on search btn click, removing previous search results, saving query as a variable and calling a funciton to display new results
 searchBtn.addEventListener("click", () => {
@@ -84,68 +84,70 @@ searchBtn.addEventListener("click", () => {
 });
 
 //display search results, parameters on what will be displayed based on title is because google has a variety of results that are not relevent to this apps function such as summarys, collections and ebook only editions
-async function fetchGoogleBooks(url){
-    let response = await fetch(url)
-    let data = await response.json()
+async function fetchGoogleBooks(url) {
+  let response = await fetch(url);
+  let data = await response.json();
 
-    for (let i = 0; i < data.items.length; i++) {
+  for (let i = 0; i < data.items.length; i++) {
+    if (
+      data.items[i].volumeInfo.imageLinks &&
+      !data.items[i].volumeInfo.title.toLowerCase().includes("summary") &&
+      !data.items[i].volumeInfo.title.toLowerCase().includes("ebook") &&
+      !data.items[i].volumeInfo.title.toLowerCase().includes("collection")
+    )
+      searchResults.push(data.items[i]);
+  }
 
-        if (
-          data.items[i].volumeInfo.imageLinks &&
-          !data.items[i].volumeInfo.title.toLowerCase().includes("summary") &&
-          !data.items[i].volumeInfo.title.toLowerCase().includes("ebook") &&
-          !data.items[i].volumeInfo.title.toLowerCase().includes("collection")
-        )
-          searchResults.push(data.items[i]);
-        }
+  console.log(data);
 
-          console.log(data);
+  for (let i = 0; i < searchResults.length; i++) {
+    createGroup();
+  }
 
-          for (let i = 0; i < searchResults.length; i++) {
-            createGroup();
-          }
-    
-          console.log(searchResults);
-    
-        applyInfo(searchResults)
-        showBookDetails()
+  console.log(searchResults);
 
-
+  applyInfo(searchResults);
+  showBookDetails();
 }
 
-function showBookDetails(){
-    for(let i = 0; i < searchResults.length; i++){
-        let books = Array.from(document.querySelectorAll(".single-book"));
+async function showBookDetails() {
+  for (let i = 0; i < searchResults.length; i++) {
+    let books = Array.from(document.querySelectorAll(".single-book"));
 
-    
-        books[i].addEventListener('click', () => {
-            console.log(searchResults[i])
-            let data = searchResults[i]
-            let bookInfo = {
-                title: data.volumeInfo.title,
-                author: data.volumeInfo.authors[0],
-                rating: data.volumeInfo.averageRating,
-                cover: data.volumeInfo.imageLinks.thumbnail
-            }
+    books[i].addEventListener("click", async () => {
+      // for(let i = 0; i < searchResults.length; i++){
+      console.log("working");
+      console.log(searchResults[i]);
+      let data = searchResults[i];
+      let bookInfo = {
+        title: data.volumeInfo.title,
+        author: data.volumeInfo.authors[0],
+        rating: data.volumeInfo.averageRating,
+        cover: data.volumeInfo.imageLinks.thumbnail,
+      };
 
-            console.log(bookInfo)
+      console.log(bookInfo);
 
-            fetch('/bookDetails', {
-                method: 'post',
-                body: JSON.stringify(bookInfo),
-                // headers: {
-                //     'Content-Type': 'application/json'
-                //   }
-            })
-                .then(res => res.json)
+      const response = await fetch("bookDetails", {
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(bookInfo),
+      });
+    //   const resData = await response.json();
+      // })
 
-        })
-    }
+      //     fetch('/bookDetails', {
+      //         method: 'post',
+      //         headers: {'Content-Type': 'application/json'},
+      //         body: JSON.stringify(bookInfo),
+
+      //     })
+      //         .then(res => res.json)
+
+      // })
+      // }
+    });
+  }
 }
-
 
 //setting a fuction for when a title is clicked on
-
-
-
-
