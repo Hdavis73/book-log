@@ -29,15 +29,30 @@ app.get('/chapterLog', (req,res) => {
     res.render('chapterLog')
 })
 
-app.get('/findBook', (req,res) => {
-    res.render('findBook')
+app.get('/findBookLoad', (req,res) => {
+    res.render('findBookLoad')
 })
+
+app.post('/renderBestSellers',(req,res) => {
+    console.log(req.body)
+    console.log(req.body.bestSellers[1].volumeInfo)
+    // res.send({response: 'done'})
+    // res.redirect('/findBook')
+    res.send({'redirectTo': 'findBook'}, {bestSellers: req.body.bestSellers})
+})
+
+// app.get('/showBestSellers', (req,res) => {
+//     res.render('findBook')
+// })
+
 
 app.post('/bookDetails', (req,res) => {
     console.log(req.body)
 
-    res.send({'redirectTo': 'showBookDetails'})
+    res.send({'redirectTo': 'bookDetails'})
 })
+
+
 
 app.get('/showBookDetails', (req,res) => {
     console.log('in get request')
