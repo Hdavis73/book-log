@@ -12,13 +12,12 @@
       </div>
 
       <section class="book-group">
-
-        <% bestSellers.forEach( book => { %>
-              <div class="single-book">
-                <img src="<%= book.volumeInfo.imageLinks.thumbnail %>" alt="book-cover">
-              </div>
-         <% }) %>
-
+        <% for(let i = 0; i < bestSellers.length; i++){ %>
+        <div class="single-book">
+          <img class="book-cover" src="<%= bestSellers[i].volumeInfo.imageLinks.thumbnail %>" alt="book-cover" />
+          <h3 class="book-title"><%= bestSellers[i].volumeInfo.title %></h3>
+        </div>
+        <% } %>
         <!-- <div class="single-book">
                 <img src="#" alt="" class="book-cover">
                 <h3 class="book-title">Title</h3>
