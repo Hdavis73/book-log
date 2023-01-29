@@ -1,3 +1,5 @@
+
+
 // const searchBtn = document.querySelector('.search-book-btn');
 // const searchInput = document.querySelector('.search-book-input');
 // // const bestSellersUrl =
@@ -54,8 +56,6 @@
 //     const data = await response.json();
 //     googleIsbnResults.push(data.items[0]);
 //     // createGroup();
-
-
 
 //     console.log('done');
 //   }
@@ -127,24 +127,49 @@
 // //   showBookDetails();
 // // }
 
-// // //setting a fuction for when a title is clicked on
-// // async function showBookDetails() {
-// //   for (let i = 0; i < searchResults.length; i++) {
-// //     let books = Array.from(document.querySelectorAll(".single-book"));
+//setting a fuction for when a title is clicked on
+// async function showBookDetails() {
 
-// //     books[i].addEventListener("click", async () => {
-// //       // for(let i = 0; i < searchResults.length; i++){
-// //       console.log("working");
-// //       console.log(searchResults[i]);
-// //       let data = searchResults[i];
-// //       let bookInfo = {
-// //         title: data.volumeInfo.title,
-// //         author: data.volumeInfo.authors[0],
-// //         rating: data.volumeInfo.averageRating,
-// //         cover: data.volumeInfo.imageLinks.thumbnail,
-// //       };
+// setTimeout(() => {
+let books = Array.from(document.querySelectorAll('.single-book'));
 
-// //       console.log(bookInfo);
+for (let i = 0; i < books.length; i++) {
+  books[i].addEventListener('click', async () => {
+    console.log(i);
+
+    // const xhttp = new XMLHttpRequest()
+    // xhttp.open('GET', '/bookDetails')
+    // xhttp.send()
+    // let bookInfo = {
+    //   title: data.volumeInfo.title,
+    //   author: data.volumeInfo.authors[0],
+    //   rating: data.volumeInfo.averageRating,
+    //   cover: data.volumeInfo.imageLinks.thumbnail,
+    // };
+
+    const response = await fetch(`bookDetails/${i}`, {
+      method: 'get',
+    });
+    const result = await response.json();
+    if (result.redirectTo) location.href = result.redirectTo;
+  });
+}
+
+// }, 6000);
+
+// books[i].addEventListener("click", async () => {
+//   // for(let i = 0; i < searchResults.length; i++){
+//   console.log("working");
+//   console.log(searchResults[i]);
+//   let data = searchResults[i];
+//   let bookInfo = {
+//     title: data.volumeInfo.title,
+//     author: data.volumeInfo.authors[0],
+//     rating: data.volumeInfo.averageRating,
+//     cover: data.volumeInfo.imageLinks.thumbnail,
+//   };
+
+//   console.log(bookInfo);
 
 // //       const response = await fetch("bookDetails", {
 // //         method: "post",
@@ -154,7 +179,7 @@
 // //         const result = await response.json();
 
 // //         if(result.redirectTo) location.assign(result.redirectTo)
-// //     });
-// //   }
-// // }
+//   });
+// }
+// }
 // fetchBestSellerIsbnNy()

@@ -289,6 +289,38 @@ form textarea {
 
 .book-details-wrap {
     line-height: 1.3;
+    gap: 10px;
+}
+
+.book-details-wrap .background-cover{
+    width: 100%;
+    height: 250px;
+    opacity: .7;
+    filter: blur(3px);
+    border-radius: 10px;
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    top: 0px;
+}
+
+.book-details-wrap .main-cover {
+    width: 35%;
+    align-self: center;
+    position: relative;
+    z-index: 2;
+}
+
+.book-details-wrap .bold-text {
+    font-weight: 700
+}
+
+.book-details-wrap h3 {
+    font-size: 2rem;
+}
+
+.book-details-wrap p {
+    margin: 20px 0px;
 }
 
 @media screen and (max-width: 1023px) {

@@ -32,11 +32,10 @@ app.get('/chapterLog', (req, res) => {
 });
 
 app.get('/findBook', async (req, res) => {
-
-    bestSellers = await booksApi.getBestSellers()
-//   console.log(bestSellers)
-    // const bestSellers = booksApi.googleIsbnResults
-  res.render('findBook', { bestSellers: bestSellers })
+  bestSellers = await booksApi.getBestSellers();
+  //   console.log(bestSellers)
+  // const bestSellers = booksApi.googleIsbnResults
+  res.render('findBook', { bestSellers: bestSellers });
   // const bestSellersSecond = await booksApi.fetchGoogleBooksByIsbn()
   // setTimeout(async function()  {
   // },5000)
@@ -65,16 +64,39 @@ app.post('/bookDetails', (req, res) => {
   res.send({ redirectTo: `showBookDetails/${JSON.stringify(req.body)}` });
 });
 
-app.get('/processBookDetails/:body', async (req, res) => {
+app.get('/bookDetails/:body', async (req, res) => {
   // console.log(req.params.details.title)
   // let params = JSON.stringify(req.params.details)
   // console.log(req.params)
-
+//   let clickedBook = await booksApi.getSelectedBookIsbn(req.params.body);
+// console.log(req.params.body)
+//   let selectedBook = bestSellers[req.params.body];
+//   let selectedBookInfo = {
+//     title: selectedBook.volumeInfo.title,
+//     coverPhoto: selectedBook.volumeInfo.imageLinks.thumbnail,
+//     author: selectedBook.volumeInfo.authors[0]
+//   }
+//   console.log(selectedBook);
   console.log('in get req');
-  res.send({ redirectTo: `showBookDetails/${JSON.stringify(req.params)}` });
-  // res.render('book-details')
+
+    res.send({ redirectTo: `showBookDetails/${req.params.body}` });
+  //   res.render('book-details')
 });
 
-app.get('/showBookDetails/:body', (req, res) => {
-  res.render('book-details');
+// app.get('bookDetails', (req,res) => {
+//     res.render('book-details')
+// })
+
+app.get('/showBookDetails/:body', async (req, res) => {
+    // console.log(req.params)
+  let clickedBook = await booksApi.getSelectedBookIsbn(req.params.body);
+  let clickedBookDetails = {
+    title: clickedBook.volumeInfo.title,
+    cover: clickedBook.volumeInfo.imageLinks.thumbnail,
+    author: clickedBook.volumeInfo.authors[0],
+    description: clickedBook.volumeInfo.description,
+    rating: clickedBook.volumeInfo.averageRating,
+  }
+console.log(clickedBook)
+  res.render('book-details', { bookDetails: clickedBookDetails});
 });

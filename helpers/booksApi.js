@@ -3,12 +3,13 @@ const fetch = require('node-fetch');
 let searchByIsbn = 'https://www.googleapis.com/books/v1/volumes?q=isbn:';
 let query;
 let searchResults = [];
+let googleIsbnResults = [];
+let bestSellerIsbn = [];
 
 //fetch best sellers isbns in ny times book api, fetch book info using isbn results, return book info
 const getBestSellers = async () => {
 
-    let googleIsbnResults = [];
-    let bestSellerIsbn = [];
+
 
     //needed to reset array on for every call so it doesnt stack up 
     if(googleIsbnResults.length > 0){
@@ -31,6 +32,11 @@ const getBestSellers = async () => {
 
       return googleIsbnResults;
 };
+
+const getSelectedBookIsbn = (i) => {
+    console.log(googleIsbnResults[i])
+    return googleIsbnResults[i]
+}
 
 //fetch isbns from ny best sellers list in google api
 
@@ -119,5 +125,6 @@ module.exports = {
 //   fetchGoogleBooksByIsbn,
   newInput,
   fetchGoogleBooks,
+  getSelectedBookIsbn,
 //   googleIsbnResults
 };
