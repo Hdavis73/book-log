@@ -1,11 +1,10 @@
-
-
-// const searchBtn = document.querySelector('.search-book-btn');
-// const searchInput = document.querySelector('.search-book-input');
+const searchBtn = document.querySelector('.search-book-btn');
+const searchInput = document.querySelector('.search-book-input');
+// let query
 // // const bestSellersUrl =
 // //   "https://api.nytimes.com/svc/books/v3/lists.json?list-name=hardcover-fiction&&api-key=fdXgMoy5fKdWsnKYYNWbUpbrQ99O9xJe";
 // let searchByIsbn = 'https://www.googleapis.com/books/v1/volumes?q=isbn:';
-// let query;
+let query;
 // let searchResults = [];
 // let bestSellerIsbn = [];
 // let googleIsbnResults = [];
@@ -84,36 +83,33 @@
 // // fetchBestSellerIsbnNy();
 
 // // //on search btn click, removing previous search results, saving query as a variable and calling a funciton to display new results
-// // searchBtn.addEventListener("click", () => {
-// //   query = searchInput.value;
-// //   let googleBooksUrl = `https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=20`;
-// //   const bookContainer = document.querySelector(".book-group");
-// //   let books = Array.from(document.querySelectorAll(".single-book"));
+searchBtn.addEventListener('click', searchBook);
 
-// //   console.log(query);
+async function searchBook() {
+  let query = searchInput.value;
+  console.log('searching')
 
-// //   for (let i = books.length - 1; i >= 0; i--) {
-// //     bookContainer.removeChild(books[i]);
-// //     searchResults = [];
-// //   }
+  console.log(query);
 
-// //   fetchGoogleBooks(googleBooksUrl);
-// // });
+  const response = await fetch(`/searchBook/${query}`);
+  const result = await response.json();
+  if (await result.redirectTo) location.href = result.redirectTo;
+}
 
 // // //display search results, parameters on what will be displayed based on title is because google has a variety of results that are not relevent to this apps function such as summarys, collections and ebook only editions
-// // async function fetchGoogleBooks(url) {
-// //   let response = await fetch(url);
-// //   let data = await response.json();
+// async function fetchGoogleBooks(url) {
+//   let response = await fetch(url);
+//   let data = await response.json();
 
-// //   for (let i = 0; i < data.items.length; i++) {
-// //     if (
-// //       data.items[i].volumeInfo.imageLinks &&
-// //       !data.items[i].volumeInfo.title.toLowerCase().includes("summary") &&
-// //       !data.items[i].volumeInfo.title.toLowerCase().includes("ebook") &&
-// //       !data.items[i].volumeInfo.title.toLowerCase().includes("collection")
-// //     )
-// //       searchResults.push(data.items[i]);
-// //   }
+//   for (let i = 0; i < data.items.length; i++) {
+//     if (
+//       data.items[i].volumeInfo.imageLinks &&
+//       !data.items[i].volumeInfo.title.toLowerCase().includes("summary") &&
+//       !data.items[i].volumeInfo.title.toLowerCase().includes("ebook") &&
+//       !data.items[i].volumeInfo.title.toLowerCase().includes("collection")
+//     )
+//       searchResults.push(data.items[i]);
+//   }
 
 // //   console.log(data);
 
@@ -129,31 +125,29 @@
 
 //setting a fuction for when a title is clicked on
 // async function showBookDetails() {
+let useBestSellers;
+
+if (!searchInput.value) useBestSellers = true;
+if (useBestSellers === true) showBestSellers();
 
 // setTimeout(() => {
-let books = Array.from(document.querySelectorAll('.single-book'));
+function showBestSellers() {
+  let books = Array.from(document.querySelectorAll('.single-book'));
 
-for (let i = 0; i < books.length; i++) {
-  books[i].addEventListener('click', async () => {
-    console.log(i);
+  for (let i = 0; i < books.length; i++) {
+    books[i].addEventListener('click', async () => {
+      console.log(i);
 
-    // const xhttp = new XMLHttpRequest()
-    // xhttp.open('GET', '/bookDetails')
-    // xhttp.send()
-    // let bookInfo = {
-    //   title: data.volumeInfo.title,
-    //   author: data.volumeInfo.authors[0],
-    //   rating: data.volumeInfo.averageRating,
-    //   cover: data.volumeInfo.imageLinks.thumbnail,
-    // };
-
-    const response = await fetch(`bookDetails/${i}`, {
-      method: 'get',
+      const response = await fetch(`loadBestSellerDetails/${i}`, {
+        method: 'get',
+      });
+      const result = await response.json();
+      if (result.redirectTo) location.href = result.redirectTo;
     });
-    const result = await response.json();
-    if (result.redirectTo) location.href = result.redirectTo;
-  });
+  }
 }
+
+window.onload = showBestSellers();
 
 // }, 6000);
 
