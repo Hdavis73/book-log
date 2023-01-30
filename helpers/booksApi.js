@@ -57,101 +57,14 @@ const getSearchedBook = async (query) => {
   return searchResults;
 };
 
-
-  if(searchResults.length > 0)  runBestSellers = false
-
 const getSelectedBookDetails = (i) => {
     console.log(searchResults[i]);
     return searchResults[i];
   };
 
-//fetch isbns from ny best sellers list in google api
-
-// const fetchGoogleBooksByIsbn = async () => {
-//     for (const result of bestSellerIsbn) {
-//         const response = await fetch(searchByIsbn + result.isbn10 + '&maxResults=20');
-//         const data = await response.json();
-//         googleIsbnResults.push(data.items[0]);
-//         // setTimeout(function(){
-//             // console.log(googleIsbnResults)
-// }
-// return googleIsbnResults;
-
-// }
-
-// async function fetchGoogleBooksByIsbn() {
-//   //   for (let i =  0; i < bestSellerIsbn.length; i++) {
-//   //     const response = await fetch(searchByIsbn + bestSellerIsbn[i].isbn10 + '&maxResults=20');
-//   //     const data = await response.json();
-//   //     googleIsbnResults.push(data.items[0]);
-
-//   //     console.log('done');
-//   //   }
-
-//   for (const result of bestSellerIsbn) {
-//     const response = await fetch(searchByIsbn + result.isbn10 + '&maxResults=20');
-//     const data = await response.json();
-//     googleIsbnResults.push(data.items[0]);
-//     // setTimeout(function(){
-//         // console.log(googleIsbnResults)
-//         return googleIsbnResults;
-//     //   },4000)
-//     console.log('done');
-//   }
-
-// }
-
-//save new query and call function to search for new results
-// function newInput() {
-//   query = searchInput.value;
-//   let googleBooksUrl = `https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=20`;
-//   //   const bookContainer = document.querySelector('.book-group');
-//   //   let books = Array.from(document.querySelectorAll('.single-book'));
-
-//   console.log(query);
-
-//   //   for (let i = books.length - 1; i >= 0; i--) {
-//   //     bookContainer.removeChild(books[i]);
-//   //     searchResults = [];
-//   //   }
-
-//   fetchGoogleBooks(googleBooksUrl);
-// }
-
-// async function fetchGoogleBooks(url) {
-//   let response = await fetch(url);
-//   let data = await response.json();
-
-//   for (let i = 0; i < data.items.length; i++) {
-//     if (
-//       data.items[i].volumeInfo.imageLinks &&
-//       !data.items[i].volumeInfo.title.toLowerCase().includes('summary') &&
-//       !data.items[i].volumeInfo.title.toLowerCase().includes('ebook') &&
-//       !data.items[i].volumeInfo.title.toLowerCase().includes('collection')
-//     )
-//       searchResults.push(data.items[i]);
-//   }
-
-//   console.log(data);
-
-//   // for (let i = 0; i < searchResults.length; i++) {
-//   //   createGroup();
-//   // }
-
-//   // console.log(searchResults);
-
-//   // applyInfo(searchResults);
-//   // showBookDetails();
-
-//   return searchResults;
-// }
-
 module.exports = {
   getBestSellers,
   getSearchedBook,
-  //   newInput,
-  //   fetchGoogleBooks,
   getSelectedBestSellerDetails,
   getSelectedBookDetails,
-  runBestSellers
 };
