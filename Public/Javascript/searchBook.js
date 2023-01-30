@@ -1,14 +1,18 @@
 const searchBtn = document.querySelector('.search-book-btn');
 const searchInput = document.querySelector('.search-book-input');
+const firstBook = document.querySelector('.book-group').firstElementChild
 // let query
 // // const bestSellersUrl =
 // //   "https://api.nytimes.com/svc/books/v3/lists.json?list-name=hardcover-fiction&&api-key=fdXgMoy5fKdWsnKYYNWbUpbrQ99O9xJe";
 // let searchByIsbn = 'https://www.googleapis.com/books/v1/volumes?q=isbn:';
 let query;
+let runBestSellers = true
 // let searchResults = [];
 // let bestSellerIsbn = [];
 // let googleIsbnResults = [];
-
+console.log(firstBook)
+if(firstBook.classList.contains('bestSeller')) showBestSellerDetails()
+else showSearchedBookDetails()
 // // // create necessary elements for layout
 // // function createGroup() {
 // //   const div = document.createElement("div");
@@ -94,6 +98,8 @@ async function searchBook() {
   const response = await fetch(`/searchBook/${query}`);
   const result = await response.json();
   if (await result.redirectTo) location.href = result.redirectTo;
+
+  showSearchedBookDetails()
 }
 
 // // //display search results, parameters on what will be displayed based on title is because google has a variety of results that are not relevent to this apps function such as summarys, collections and ebook only editions
@@ -124,21 +130,37 @@ async function searchBook() {
 // // }
 
 //setting a fuction for when a title is clicked on
-// async function showBookDetails() {
-let useBestSellers;
+// let useBestSellers;
 
-if (!searchInput.value) useBestSellers = true;
-if (useBestSellers === true) showBestSellers();
+// if (!searchInput.value) useBestSellers = true;
+// if (runBestSellers === true) showBestSellerDetails();
 
-// setTimeout(() => {
-function showBestSellers() {
+
+  function showSearchedBookDetails() {
+    let books = Array.from(document.querySelectorAll('.single-book'));
+    console.log('in book details')
+  
+    for (let i = 0; i < books.length; i++) {
+      books[i].addEventListener('click', async () => {
+        console.log(i);
+  
+        const response = await fetch(`/loadSelectedDetails/${i}`, {
+          method: 'get',
+        });
+        const result = await response.json();
+        if (result.redirectTo) location.href = result.redirectTo;
+      });
+    }
+  }
+
+function showBestSellerDetails() {
   let books = Array.from(document.querySelectorAll('.single-book'));
 
   for (let i = 0; i < books.length; i++) {
     books[i].addEventListener('click', async () => {
       console.log(i);
 
-      const response = await fetch(`loadBestSellerDetails/${i}`, {
+      const response = await fetch(`/loadBestSellerDetails/${i}`, {
         method: 'get',
       });
       const result = await response.json();
@@ -147,7 +169,9 @@ function showBestSellers() {
   }
 }
 
-window.onload = showBestSellers();
+
+
+// window.onload = showBestSellerDetails();
 
 // }, 6000);
 

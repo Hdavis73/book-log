@@ -14,10 +14,17 @@
       <section class="book-group">
 
         <% for(let i = 0; i < items.length; i++){ %>
-          <div class="single-book">
+        <% if(bestSellers === true){ %>
+          <div class="single-book bestSeller">
             <img class="book-cover" src="<%= items[i].volumeInfo.imageLinks.thumbnail %>" alt="book-cover" />
             <h3 class="book-title"><%= items[i].volumeInfo.title %></h3>
           </div>
+          <% }else{ %>
+            <div class="single-book">
+            <img class="book-cover" src="<%= items[i].volumeInfo.imageLinks.thumbnail %>" alt="book-cover" />
+            <h3 class="book-title"><%= items[i].volumeInfo.title %></h3>
+          </div>
+          <% } %>
       <% } %>
         <!-- <div class="single-book">
                 <img src="#" alt="" class="book-cover">

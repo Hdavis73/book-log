@@ -4,6 +4,7 @@ let searchByIsbn = 'https://www.googleapis.com/books/v1/volumes?q=isbn:';
 let searchResults = [];
 let googleIsbnResults = [];
 let bestSellerIsbn = [];
+let runBestSellers = true
 
 //fetch best sellers isbns in ny times book api, fetch book info using isbn results, return book info
 const getBestSellers = async () => {
@@ -29,7 +30,7 @@ const getBestSellers = async () => {
   return googleIsbnResults;
 };
 
-const getSelectedBookDetails = (i) => {
+const getSelectedBestSellerDetails = (i) => {
   console.log(googleIsbnResults[i]);
   return googleIsbnResults[i];
 };
@@ -52,8 +53,17 @@ const getSearchedBook = async (query) => {
       searchResults.push(data.items[i]);
   }
 
+
   return searchResults;
 };
+
+
+  if(searchResults.length > 0)  runBestSellers = false
+
+const getSelectedBookDetails = (i) => {
+    console.log(searchResults[i]);
+    return searchResults[i];
+  };
 
 //fetch isbns from ny best sellers list in google api
 
@@ -141,6 +151,7 @@ module.exports = {
   getSearchedBook,
   //   newInput,
   //   fetchGoogleBooks,
+  getSelectedBestSellerDetails,
   getSelectedBookDetails,
-  //   googleIsbnResults
+  runBestSellers
 };
