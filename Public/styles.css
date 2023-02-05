@@ -346,10 +346,19 @@ form textarea {
         max-height: 147px;
     }
 
+    .single-book h3 {
+        font-size: 1rem;
+    }
+
     .search-btn-group button{
         font-size: 1.1rem
     }
-    .search-btn-group input{
+    .search-btn-group input, 
+    .btn{
         font-size: 1.1rem
+    }
+
+    .book-details-wrap h3 {
+        font-size: 1.8rem;
     }
 }
