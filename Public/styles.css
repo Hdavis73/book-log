@@ -362,3 +362,62 @@ form textarea {
         font-size: 1.8rem;
     }
 }
+
+@media screen and (max-width: 475px) {
+    .single-book {
+        flex: max(70px, 100%/4 - 15px);
+        max-width: 70px;
+    }
+
+    .single-book img {
+        width: 100%;
+        /* width: 144.32px; */
+        height: 60%;
+        max-height: 147px;
+    }
+
+    .single-book h3 {
+        font-size: .8rem;
+    }
+
+    .search-btn-group button{
+        font-size: .9rem
+    }
+    .search-btn-group input, 
+    .btn{
+        font-size: .9rem
+    }
+
+    .book-details-wrap h3 {
+        font-size: 1.4rem;
+    }
+}
+@media screen and (max-width: 385px) {
+    .single-book {
+        flex: max(55px, 100%/3 - 15px);
+        max-width: 55px;
+    }
+
+    .single-book img {
+        width: 100%;
+        /* width: 144.32px; */
+        height: 60%;
+        max-height: 147px;
+    }
+
+    .single-book h3 {
+        font-size: .7rem;
+    }
+
+    .search-btn-group button{
+        font-size: .6rem
+    }
+    .search-btn-group input, 
+    .btn{
+        font-size: .6rem
+    }
+
+    .book-details-wrap h3 {
+        font-size: 1rem;
+    }
+}
