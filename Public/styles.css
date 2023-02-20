@@ -329,12 +329,12 @@ form textarea {
   gap: 15px;
   font-size: 1.7rem;
   color: var(--main-color);
-  cursor: pointer;
 }
 
 .icon-wrap i:hover {
-    color: var(--main-color);
-    opacity: .8;
+  color: var(--main-color);
+  opacity: 0.8;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 1023px) {

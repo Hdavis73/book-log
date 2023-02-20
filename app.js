@@ -36,29 +36,27 @@ app.get('/findBook', async (req, res) => {
   res.render('findBook', { items: bestSellers, bestSellers: true });
 });
 
-app.get('/searchBook/:searchQuery', async (req,res) => {
+app.get('/searchBook/:searchQuery', async (req, res) => {
+  console.log('first');
 
-    console.log('first')
+  res.send({ redirectTo: `/searchDisplay/${req.params.searchQuery}` });
+});
 
-    res.send({ redirectTo: `/searchDisplay/${req.params.searchQuery}` })
-})
-
-app.get('/searchDisplay/:searchQuery', async(req,res) => {
-    let searchItems
-    searchItems = await booksApi.getSearchedBook(req.params.searchQuery)
-    console.log('third')
-    res.render('findBook', { items: searchItems, bestSellers: false })
-})
+app.get('/searchDisplay/:searchQuery', async (req, res) => {
+  let searchItems;
+  searchItems = await booksApi.getSearchedBook(req.params.searchQuery);
+  console.log('third');
+  res.render('findBook', { items: searchItems, bestSellers: false });
+});
 
 app.get('/loadBestSellerDetails/:body', async (req, res) => {
-
   console.log('in get req');
 
-    res.send({ redirectTo: `/bestSellerDetails/${req.params.body}` });
+  res.send({ redirectTo: `/bestSellerDetails/${req.params.body}` });
 });
 
 app.get('/bestSellerDetails/:body', async (req, res) => {
-    // console.log(req.params)
+  // console.log(req.params)
   let clickedBook = await booksApi.getSelectedBestSellerDetails(req.params.body);
   let clickedBookDetails = {
     title: clickedBook.volumeInfo.title,
@@ -66,21 +64,20 @@ app.get('/bestSellerDetails/:body', async (req, res) => {
     author: clickedBook.volumeInfo.authors[0],
     description: clickedBook.volumeInfo.description,
     rating: clickedBook.volumeInfo.averageRating,
-  }
+  };
 
-console.log(clickedBook)
-  res.render('book-details', { bookDetails: clickedBookDetails});
+  console.log(clickedBook);
+  res.render('book-details', { bookDetails: clickedBookDetails });
 });
 
 app.get('/loadSelectedDetails/:body', async (req, res) => {
+  console.log('in get req');
 
-    console.log('in get req');
-  
-      res.send({ redirectTo: `/selectedDetails/${req.params.body}`, runBestSellers: false});
-  });
+  res.send({ redirectTo: `/selectedDetails/${req.params.body}`, runBestSellers: false });
+});
 
-  app.get('/selectedDetails/:body', async (req, res) => {
-    // console.log(req.params)
+app.get('/selectedDetails/:body', async (req, res) => {
+  // console.log(req.params)
   let clickedBook = await booksApi.getSelectedBookDetails(req.params.body);
   let clickedBookDetails = {
     title: clickedBook.volumeInfo.title,
@@ -88,8 +85,11 @@ app.get('/loadSelectedDetails/:body', async (req, res) => {
     author: clickedBook.volumeInfo.authors[0],
     description: clickedBook.volumeInfo.description,
     rating: clickedBook.volumeInfo.averageRating,
-  }
-console.log(clickedBook)
-  res.render('book-details', { bookDetails: clickedBookDetails});
+  };
+  console.log(clickedBook);
+  res.render('book-details', { bookDetails: clickedBookDetails });
 });
 
+app.get('/viewLibrary', (req, res) => {
+  res.render('view-library');
+});
