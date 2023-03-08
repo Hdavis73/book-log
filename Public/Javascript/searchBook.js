@@ -15,7 +15,7 @@ async function searchBook() {
 
   console.log(query);
 
-  const response = await fetch(`/searchBook/${query}`);
+  const response = await fetch(`findBook/searchBook/${query}`);
   const result = await response.json();
   if (await result.redirectTo) location.href = result.redirectTo;
 
@@ -31,7 +31,7 @@ async function searchBook() {
       books[i].addEventListener('click', async () => {
         console.log(i);
   
-        const response = await fetch(`/loadSelectedDetails/${i}`, {
+        const response = await fetch(`/bookDetails/loadSelectedDetails/${i}`, {
           method: 'get',
         });
         const result = await response.json();
@@ -47,7 +47,7 @@ function showBestSellerDetails() {
     books[i].addEventListener('click', async () => {
       console.log(i);
 
-      const response = await fetch(`/loadBestSellerDetails/${i}`, {
+      const response = await fetch(`/bookDetails/loadBestSellerDetails/${i}`, {
         method: 'get',
       });
       const result = await response.json();
