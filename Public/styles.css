@@ -85,7 +85,7 @@ a {
 }
 
 .intro-wrap h1,
-.choose-log-wrap h1 {
+.choose-log-wrap h1{
   font-size: 2rem;
   font-weight: 700;
   margin: 0;
@@ -105,7 +105,8 @@ a {
 
 .book-log-wrap,
 .search-wrap,
-.book-details-wrap {
+.book-details-wrap,
+.personal-library-wrap {
   background-color: white;
   padding: 30px;
   border-radius: 10px;
@@ -119,7 +120,8 @@ a {
   text-align: center;
 }
 
-.book-log-wrap h1 {
+.book-log-wrap h1,
+.personal-library-wrap h1 {
   margin: 0;
   font-weight: 500;
   font-size: 2.4rem;

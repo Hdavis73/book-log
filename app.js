@@ -16,6 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 const logRoutes = require('./routes/logs')
 const findBookRoutes = require('./routes/findBook')
 const bookDetailsRoutes = require('./routes/bookDetails')
+const viewLibraryRoutes = require('./routes/library');
 
 app.get('/', (req, res) => {
   res.render('index');
@@ -27,6 +28,4 @@ app.use('/findBook', findBookRoutes)
 
 app.use('/bookDetails', bookDetailsRoutes)
 
-app.get('/viewLibrary', (req, res) => {
-  res.render('view-library');
-});
+app.use('/viewLibrary', viewLibraryRoutes);
